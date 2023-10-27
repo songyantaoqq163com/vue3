@@ -1,8 +1,15 @@
 <template>
   <div>
-    <el-tree :data="data" :props="defaultProps" accordion @node-click="handleNodeClick">
-    </el-tree>
-    <img alt="Vue logo" src="./assets/logo.png">
+    <el-row>
+      <el-col :span="5">
+        <el-tree :data="data" :props="defaultProps" accordion @node-click="handleNodeClick">
+        </el-tree>
+        <img alt="Vue logo" src="./assets/logo.png">
+      </el-col>
+      <el-col :span="19">
+        <router-view></router-view>
+      </el-col>
+    </el-row>
     <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
   </div>
 </template>
@@ -60,7 +67,9 @@ export default {
   },
   methods: {
     handleNodeClick(data) {
-      console.log(data);
+      if(!data.children){
+        console.log(71,data);
+      }
     }
   }
 }
@@ -69,10 +78,12 @@ export default {
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
+  /* -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  text-align: center; */
+  /* color: #2c3e50; */
+  /* margin-top: 60px; */
+  border:1px solid #2c3e50;
+  height: calc(100vh - 20px);
 }
 </style>
