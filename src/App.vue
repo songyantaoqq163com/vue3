@@ -1,12 +1,12 @@
 <template>
   <div>
     <el-row>
-      <el-col :span="5">
+      <el-col :span="4">
         <el-tree :data="data" :props="defaultProps" accordion @node-click="handleNodeClick">
         </el-tree>
         <img alt="Vue logo" src="./assets/logo.png">
       </el-col>
-      <el-col :span="19">
+      <el-col :span="20">
         <router-view></router-view>
       </el-col>
     </el-row>
@@ -27,31 +27,23 @@ export default {
       data: [{
         label: '一级 1',
         children: [{
-          label: '二级 1-1',
-          children: [{
-            label: '三级 1-1-1'
-          }]
+          label: '首页',
+          router:'/home'
         }]
       }, {
         label: '一级 2',
         children: [{
           label: '二级 2-1',
-          children: [{
-            label: '三级 2-1-1'
-          }]
+          router:'/home?1'
         }, {
           label: '二级 2-2',
-          children: [{
-            label: '三级 2-2-1'
-          }]
+          router:'/home?2'
         }]
       }, {
         label: '一级 3',
         children: [{
-          label: '二级 3-1',
-          children: [{
-            label: '三级 3-1-1'
-          }]
+          label: '音乐播放器',
+          router:'/AudioVisual'
         }, {
           label: '二级 3-2',
           children: [{
@@ -68,7 +60,8 @@ export default {
   methods: {
     handleNodeClick(data) {
       if(!data.children){
-        console.log(71,data);
+        console.log(71,data,this.$router);
+        this.$router.push(data.router)
       }
     }
   }
