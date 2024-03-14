@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "echarts": "^5.5.0",
+    "echarts-gl": "^2.0.9",
     "element-plus": "^2.4.1",
     "vue": "^3.2.13",
     "vue-audio-better": "^3.0.1",

@@ -4,6 +4,7 @@
       <el-col :span="4">
         <el-tree :data="data" :props="defaultProps" accordion @node-click="handleNodeClick">
         </el-tree>
+        <el-button type="primary" disabled>Primary</el-button>
         <img alt="Vue logo" src="./assets/logo.png">
       </el-col>
       <el-col :span="20">
@@ -46,9 +47,7 @@ export default {
           router:'/AudioVisual'
         }, {
           label: '二级 3-2',
-          children: [{
-            label: '三级 3-2-1'
-          }]
+          router:'/AudioVisual?1'
         }]
       }],
       defaultProps: {
