@@ -4,8 +4,7 @@
       <el-col :span="4">
         <el-tree :data="data" :props="defaultProps" accordion @node-click="handleNodeClick">
         </el-tree>
-        <el-button type="primary" disabled>Primary</el-button>
-        <img alt="Vue logo" src="./assets/logo.png">
+        
       </el-col>
       <el-col :span="20">
         <router-view></router-view>
@@ -26,28 +25,22 @@ export default {
   data() {
     return {
       data: [{
-        label: '一级 1',
-        children: [{
-          label: '首页',
-          router:'/home'
-        }]
+        label: '首页',
+        router:'/home'
       }, {
-        label: '一级 2',
+        label: 'Echarts绘图',
         children: [{
-          label: '二级 2-1',
-          router:'/home?1'
+          label: '3DEcharts',
+          router:'/echartsform'
         }, {
-          label: '二级 2-2',
-          router:'/home?2'
+          label: 'DataV',
+          router:'/dataVone'
         }]
       }, {
-        label: '一级 3',
+        label: '播放器',
         children: [{
           label: '音乐播放器',
           router:'/AudioVisual'
-        }, {
-          label: '二级 3-2',
-          router:'/AudioVisual?1'
         }]
       }],
       defaultProps: {
@@ -77,5 +70,8 @@ export default {
   /* margin-top: 60px; */
   border:1px solid #2c3e50;
   height: calc(100vh - 20px);
+  /* overflow: auto; */
+  background:#000000;
+  color:#ffffff;
 }
 </style>

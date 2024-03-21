@@ -7,6 +7,16 @@ const routes = [
         name: 'HelloWorld',
         component: () => import('../components/HelloWorld.vue'),
         meta: {title: '首页'}
+    },{
+        path: '/echartsform',
+        name: 'EchartsForm',
+        component: () => import('../components/EchartsForm/echartsOne.vue'),
+        meta: {title: 'Echarts绘图'}
+    },{
+        path: '/dataVone',
+        name: 'dataVone',
+        component: () => import('../components/EchartsForm/dataVone.vue'),
+        meta: {title: 'DataV边框'}
     },
     {
         path:'/AudioVisual',
