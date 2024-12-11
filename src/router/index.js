@@ -23,6 +23,11 @@ const routes = [
         name:'AuidoVisual',
         component:()=>import('../components/AudioVisual.vue'),
         meta:{title:'audio-visual'}
+    },{
+        path:'/FirstHover',
+        name:'FirstHover',
+        component:()=>import('../components/HoverFunction/FirstHover.vue'),
+        meta:{title:'FirstHover'}
     }
 ]
 const router = createRouter({

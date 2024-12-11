@@ -41,6 +41,12 @@ export default {
           label: '音乐播放器',
           router:'/AudioVisual'
         }]
+      },{
+        label:'hover样式',
+        children:[{
+          label:'悬停功能',
+          router:'/FirstHover'
+        }]
       }],
       defaultProps: {
         children: 'children',
@@ -62,14 +68,8 @@ export default {
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  /* -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center; */
-  /* color: #2c3e50; */
-  /* margin-top: 60px; */
   border:1px solid #2c3e50;
   height: calc(100vh - 20px);
-  /* overflow: auto; */
   background:#fff;
   color:#000;
 }
