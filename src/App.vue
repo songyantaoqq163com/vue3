@@ -1,12 +1,11 @@
 <template>
   <div>
     <el-row>
-      <el-col :span="4">
+      <el-col :span="4" class="borderrightcolor">
         <el-tree :data="data" :props="defaultProps" accordion @node-click="handleNodeClick">
         </el-tree>
-        
       </el-col>
-      <el-col :span="20">
+      <el-col :span="20" class="paddingleft">
         <router-view></router-view>
       </el-col>
     </el-row>
@@ -71,7 +70,13 @@ export default {
   border:1px solid #2c3e50;
   height: calc(100vh - 20px);
   /* overflow: auto; */
-  background:#000000;
-  color:#ffffff;
+  background:#fff;
+  color:#000;
+}
+audio{
+    grid-row: 2!important;
+}
+canvas{
+    grid-row:1!important
 }
 </style>

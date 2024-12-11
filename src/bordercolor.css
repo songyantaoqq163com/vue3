@@ -1,0 +1,18 @@
+.borderrightcolor{
+    border-right: 1px solid gray;
+}
+.paddingleft{
+    padding-left:10px
+}
+.borderRed{
+    border:1px solid red;
+}
+.disblck{
+    display: inline-block;
+}
+.disgrid{
+    display:grid;
+}
+.disflex{
+    display:flex;
+}

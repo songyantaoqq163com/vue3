@@ -1,8 +1,8 @@
 <template>
     <div>
         <p>音频1</p>
-        <el-upload v-model:file-list="fileList" class="upload-demo"  ref="uploadRef"
-            action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"  :auto-upload="false" >
+        <el-upload v-model:file-list="fileList" class="upload-demo" ref="uploadRef"
+            action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15" :auto-upload="false">
             <template #trigger>
                 <el-button type="primary">上传音频</el-button>
             </template>
@@ -14,13 +14,20 @@
         </el-upload>
         <span v-for="item in fileList" :key="item.index">
             <AVBars caps-color="#FFF" :bar-color="['#f00', '#ff0', '#0f0']" canv-fill-color="#000" :caps-height="2"
-            :src="item.name"></AVBars>
+                :src="item.name"></AVBars>
         </span>
         <p>音频案例</p>
-        <AVBars caps-color="#FFF" :bar-color="['#f00', '#ff0', '#0f0']" canv-fill-color="#000" :caps-height="2"
-            src="xumi.mp3"></AVBars>
-        <AVCircle caps-color="#FFF" :bar-color="['#f00', '#ff0', '#0f0']" canv-fill-color="#000" :caps-height="2"
-            src="xumi.mp3"></AVCircle>
+        <div class="disflex">
+            <div class="disgrid borderRed" style="width:500px;">
+                <AVBars caps-color="#FFF" :bar-color="['#f00', '#ff0', '#0f0']" :width="500" canv-fill-color="#000"
+                    :caps-height="2" src="zj.mp3"></AVBars>
+            </div>
+            <div class="disgrid borderRed" style="width:500px;">
+                <AVCircle caps-color="#FFF" :bar-color="['#f00', '#ff0', '#0f0']" canv-fill-color="#000" :caps-height="2"
+                    src="xumi.mp3"></AVCircle>
+            </div>
+        </div>
+
     </div>
 </template>
 <script>
@@ -40,3 +47,4 @@ export default {
     }
 }
 </script>
+<style scoped></style>

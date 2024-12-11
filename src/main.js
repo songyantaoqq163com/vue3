@@ -10,6 +10,8 @@ import * as echarts from 'echarts';
 import { BarChart } from 'echarts-gl'
 import { borderBox8,borderBox4,decoration12 } from '@jiaminghi/data-view'
 
+import './bordercolor.css'
+
 const app=createApp(App)
 app.config.globalProperties.$echarts = echarts;
 // const myPlugin = {

@@ -17,7 +17,8 @@
     "vue-audio-better": "^3.0.1",
     "vue-audio-visual": "^3.0.5",
     "vue-router": "^4.2.5",
-    "vue-video-player": "^6.0.0"
+    "vue-video-player": "^6.0.0",
+    "vue23": "file:"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
