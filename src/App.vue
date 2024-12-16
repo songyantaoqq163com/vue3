@@ -46,6 +46,9 @@ export default {
         children:[{
           label:'悬停功能',
           router:'/FirstHover'
+        },{
+          label:'悬停图片',
+          router:'/SecondHover'
         }]
       }],
       defaultProps: {

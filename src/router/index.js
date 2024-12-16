@@ -28,6 +28,11 @@ const routes = [
         name:'FirstHover',
         component:()=>import('../components/HoverFunction/FirstHover.vue'),
         meta:{title:'FirstHover'}
+    },{
+        path:'/SecondHover',
+        name:'SecondHover',
+        component:()=>import('../components/HoverFunction/SecondHover.vue'),
+        meta:{title:'SecondHover'}
     }
 ]
 const router = createRouter({
