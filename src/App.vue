@@ -50,6 +50,9 @@ export default {
           label:'悬停图片',
           router:'/SecondHover'
         }]
+      },{
+        label:'点击事件',
+        router:'/ClickFirst'
       }],
       defaultProps: {
         children: 'children',

@@ -33,6 +33,11 @@ const routes = [
         name:'SecondHover',
         component:()=>import('../components/HoverFunction/SecondHover.vue'),
         meta:{title:'SecondHover'}
+    },{
+        path:'/ClickFirst',
+        name:'ClickFirst',
+        component:()=>import('../components/ClickEvent/clickFirst.vue'),
+        meta:{title:'点击事件'}
     }
 ]
 const router = createRouter({
