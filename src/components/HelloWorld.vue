@@ -17,7 +17,7 @@
         <li>设置</li>
       </ul>
     </nav>
-    <!-- 导航栏2 -->
+     <!-- 导航栏2 -->
     <p>导航栏2</p>
     <ul class="nav_one">
       <li>
@@ -31,19 +31,37 @@
       <li>三级导航</li>
       <li>四级导航</li>
     </ul>
-    <!-- 导航效果1 -->
-    <p>导航栏3</p>
-    <ul class="nav3 nav3_1">
-      <li>
-          <a>首页<span></span></a>
-        </li>
+
+    <div style="display: flex; justify-content: space-around;">
+      <!-- 导航效果1 -->
+      <p>导航栏3</p>
+      <ul class="nav3 nav3_1">
         <li>
-          <a>作品 <span></span></a>
-        </li>
-        <li>
-          <a>简介 <span></span></a>
-        </li>
-      </ul>
+            <a>首页<span></span></a>
+          </li>
+          <li>
+            <a>作品 <span></span></a>
+          </li>
+          <li>
+            <a>简介 <span></span></a>
+          </li>
+        </ul>
+      <!-- 导航下拉框 -->
+      <p>导航栏4</p>
+      <ul class="nav3 nav4">
+          <li><a>栏目1</a>
+            <ul class="nav4_a">
+              <li><a>菜单1</a></li>
+              <li><a>菜单2</a></li>
+              <li><a>菜单3</a></li>
+            </ul>
+          </li>
+          <li>栏目2</li>
+          <li>栏目3</li>
+          <li>栏目4</li>
+        </ul>
+    </div>
+   
   </div>
 </template>
 <script>
@@ -166,5 +184,22 @@ export default {
     background:#ff0000;
     transition:.5s;
     border-radius:50px;
+  }
+  /* 导航栏4 */
+  .nav4 li a{
+    display: block;
+  }
+  .nav4_a{
+    display:none;
+    position: absolute;
+    padding-left:0px;
+    background: #000000;
+    color: #ffffff;
+  }
+  .nav4 li:hover .nav4_a{
+    display: block;
+  }
+  .nav4_a li a:hover{
+    background:red;
   }
 </style>
