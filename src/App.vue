@@ -9,22 +9,17 @@
         <router-view></router-view>
       </el-col>
     </el-row>
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
-  components: {
-    // HelloWorld
-  },
   data() {
     return {
       data: [{
-        label: '首页',
+        label: '首页-导航栏',
         router:'/home'
       }, {
         label: 'Echarts绘图',
