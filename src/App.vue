@@ -5,7 +5,7 @@
         <el-tree :data="data" :props="defaultProps" accordion @node-click="handleNodeClick">
         </el-tree>
       </el-col>
-      <el-col :span="20" class="paddingleft">
+      <el-col :span="20">
         <router-view></router-view>
       </el-col>
     </el-row>
@@ -48,6 +48,9 @@ export default {
       },{
         label:'点击事件',
         router:'/ClickFirst'
+      },{
+        label:'前端风云',
+        router:'/WebStorm'
       }],
       defaultProps: {
         children: 'children',

@@ -38,6 +38,11 @@ const routes = [
         name:'ClickFirst',
         component:()=>import('../components/ClickEvent/clickFirst.vue'),
         meta:{title:'点击事件'}
+    },{
+        path:'/WebStorm',
+        name:'WebStorm',
+        component:()=>import('../components/WebStorm.vue'),
+        meta:{title:'前端面试风云'}
     }
 ]
 const router = createRouter({
