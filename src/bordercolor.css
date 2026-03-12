@@ -1,3 +1,62 @@
+.app_nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-around;
+    color: aqua;
+    padding: 0 20px;
+    background-color: #000000;
+  }
+  .app_logo_left{
+    font-size:24px;
+    font-weight: 600;
+    flex:1;
+  }
+  .app_nav_ul{
+    flex:1;
+    display:flex;
+    justify-content:space-between;
+    max-width: 200px;
+  }
+  .app_nav_ul li{
+    list-style:none;
+    font-weight: 300;
+  }
+  .app_nav_ul li a{
+    position:relative;
+    text-align: center;
+    top: -1px;
+  }
+  .app_nav_ul li a:hover span{
+    width:100%;
+    left:0;
+  }
+  .app_nav_ul li a span{
+    position: absolute;
+    bottom:-5px;
+    left:0;
+    right: 0;
+    width:0;
+    height:2px;
+    background:#ff0000;
+    transition:.5s;
+    border-radius:50px;
+  }
+  /* border */
+  /* app */
+  .app_left{
+    margin-left: 20px;
+  }
+  .app_left >ul{
+    margin-left: 5px;
+    font-weight: 600;
+    margin: 10px 0;
+  }
+  .app_left ul li{
+    margin-left: 15px;
+    font-weight: 200;
+  }
+  /* app */
+
 .borderrightcolor{
     border-right: 1px solid gray;
 }
@@ -23,4 +82,11 @@
 }
 ul{
     list-style: none
+}
+/* 公共 */
+.cursor{
+    cursor: pointer;
+}
+.fontRed{
+    color: red;
 }
