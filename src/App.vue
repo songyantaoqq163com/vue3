@@ -45,8 +45,11 @@ export default {
       selectedItem:null,
       curTrue:false,
       data: [{
-        label: '首页-导航栏',
-        router:'/home'
+        label: '首页',
+        children:[{
+          label:'导航栏',
+          router:'/home'
+        }]
       }, {
         label: 'Echarts绘图',
         children: [{
