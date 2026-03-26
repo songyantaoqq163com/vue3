@@ -43,6 +43,11 @@ const routes = [
         name:'WebStorm',
         component:()=>import('../components/WebStorm.vue'),
         meta:{title:'前端面试风云'}
+    },{
+        path:'/ProductionReport',
+        name:'ProductionReport',
+        component:()=>import('../components/ProductionReport.vue'),
+        meta:{title:'生产报告'}
     }
 ]
 const router = createRouter({

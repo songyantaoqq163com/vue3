@@ -83,6 +83,9 @@ export default {
           },{
             label:'前端风云',
             router:'/WebStorm'
+          },{
+            label:'生产报告',
+            router:'/ProductionReport'
           }
         ]
       }
