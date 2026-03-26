@@ -148,21 +148,181 @@ export default {
 *{
   margin:0;
   padding:0;
+  box-sizing: border-box;
 }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background: #f5f7fa;
+}
+
 #app {
-  /* font-family: Avenir, Helvetica, Arial, sans-serif;
-  border:1px solid #2c3e50;
-  height: calc(100vh - 20px);
-  background:#fff;
-  color:#000; */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
-audio{
-    grid-row: 2!important;
+
+/* 顶部导航栏样式 */
+.app_nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  height: 60px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  z-index: 100;
 }
-canvas{
-    grid-row:1!important
+
+.app_logo_left {
+  font-size: 24px;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
-.cursor:hover{
-  color: red;
+
+.app_nav_ul {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
+
+.app_nav_ul li {
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.app_nav_ul li:hover {
+  transform: translateY(-2px);
+}
+
+.app_nav_ul li a {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  padding: 5px 0;
+}
+
+.app_nav_ul li a:hover span {
+  width: 100%;
+}
+
+.app_nav_ul li a span {
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #fff;
+  transition: width 0.3s ease;
+  border-radius: 1px;
+}
+
+/* 主内容区域 */
+.el-row {
+  flex: 1;
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+/* 左侧边栏样式 */
+.borderrightcolor {
+  background: white;
+  border-right: 1px solid #e4e7ed;
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.app_left {
+  padding: 20px 0;
+}
+
+.app_left ul {
+  list-style: none;
+  padding: 0;
+}
+
+.app_left .cursor {
+  display: block;
+  padding: 12px 20px;
+  font-weight: 600;
+  color: #303133;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+}
+
+.app_left .cursor:hover {
+  background: #ecf5ff;
+  color: #409eff;
+  border-left-color: #409eff;
+  transform: translateX(5px);
+}
+
+.app_left li {
+  list-style: none;
+}
+
+.app_left li .cursor {
+  padding-left: 40px;
+  font-weight: normal;
+  color: #606266;
+  font-size: 14px;
+}
+
+.app_left li .cursor:hover {
+  background: #f5f7fa;
+  color: #409eff;
+  border-left-color: #409eff;
+}
+
+.app_left li .fontRed {
+  color: #409eff;
+  font-weight: 500;
+  background: #ecf5ff;
+  border-left-color: #409eff;
+}
+
+/* 主内容区域 */
+.el-col:nth-child(2) {
+  padding: 20px;
+  background: #f5f7fa;
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+}
+
+/* 音频和画布样式 */
+audio {
+  grid-row: 2!important;
+}
+
+canvas {
+  grid-row: 1!important;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
 }
 </style>
