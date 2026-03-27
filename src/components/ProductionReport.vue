@@ -241,9 +241,9 @@ li {
 
 <style scoped>
 .production-report {
-  padding: 20px;
+  padding: 10px;
   background: #ffffff;
-  min-height: calc(100vh - 60px);
+  height: calc(100vh - 80px);
 }
 
 .header {

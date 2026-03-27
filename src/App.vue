@@ -84,7 +84,7 @@ export default {
             label:'前端风云',
             router:'/WebStorm'
           },{
-            label:'生产报告',
+            label:'导出图片/发送邮件',
             router:'/ProductionReport'
           }
         ]
@@ -293,7 +293,7 @@ body {
 
 /* 主内容区域 */
 .el-col:nth-child(2) {
-  padding: 20px;
+  padding: 10px;
   background: #f5f7fa;
   height: calc(100vh - 60px);
   overflow-y: auto;

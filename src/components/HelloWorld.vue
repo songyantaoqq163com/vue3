@@ -106,8 +106,8 @@ export default {
 /* 标题区域 */
 .title-section {
   text-align: center;
-  margin-bottom: 60px;
-  padding: 40px 0;
+  margin-bottom: 10px;
+  padding: 10px 0;
 }
 
 .title-section h1 {
