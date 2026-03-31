@@ -1,35 +1,72 @@
 <template>
   <div>
     <nav class="app_nav">
-      <div class="app_logo_left">首页</div>
+      <div class="app_logo_left">系统管理</div>
       <ul class='app_nav_ul'>
-        <li>
+        <li @click="navigateTo('/home')">
           <a>首页<span></span></a>
         </li>
-        <li>
-          <a>作品 <span></span></a>
+        <li @click="navigateTo('/AudioVisual')">
+          <a>播放器 <span></span></a>
         </li>
-        <li>
-          <a>简介 <span></span></a>
+        <li @click="navigateTo('/ProductionReport')">
+          <a>报告 <span></span></a>
         </li>
         <li>设置</li>
       </ul>
     </nav>
     <el-row>
-      <el-col :span="4" class="borderrightcolor">
-
+      <el-col :span="collapsed ? 2 : 4" class="borderrightcolor">
+        <!-- <div class="sidebar-header">
+          <el-button 
+            type="text" 
+            @click="toggleCollapse"
+            class="collapse-btn"
+          >
+            <i :class="collapsed ? 'el-icon-arrow-right' : 'el-icon-arrow-left'"></i>
+          </el-button>
+        </div> -->
         <div class="app_left">
-          <ul v-for="item in data" :key="item.index">
-            <span class="cursor">{{item.label}}</span>
-            <li v-for="c in item.children" :key="c.index">
-              <span class="cursor" @click="handleNodeClick(c)"  :class="{'fontRed': c.active}">{{c.label}}</span>
+          <ul v-for="(item, index) in data" :key="index">
+            <li class="menu-item">
+              <div 
+                class="menu-header cursor"
+                @click="toggleMenu(index)"
+              >
+                <i :class="item.icon" v-if="!collapsed"></i>
+                <span v-if="!collapsed">{{item.label}}</span>
+                <i :class="item.expanded ? 'el-icon-arrow-up' : 'el-icon-arrow-down'" class="menu-arrow"></i>
+              </div>
+              <ul v-if="item.expanded" class="sub-menu">
+                <li v-for="(c, cIndex) in item.children" :key="cIndex">
+                  <span 
+                    class="cursor sub-menu-item" 
+                    @click="handleNodeClick(c)"  
+                    :class="{'fontRed': c.active}"
+                  >
+                    <i :class="c.icon" v-if="!collapsed"></i>
+                    <span v-if="!collapsed">{{c.label}}</span>
+                  </span>
+                </li>
+              </ul>
             </li>
           </ul>
         </div>
-        <!-- <el-tree :data="data" :props="defaultProps" accordion @node-click="handleNodeClick">
-        </el-tree> -->
       </el-col>
-      <el-col :span="20">
+      <el-col :span="collapsed ? 22 : 20">
+        <!-- 面包屑导航 -->
+        <div class="breadcrumb-container">
+          <el-breadcrumb separator="/">
+            <el-breadcrumb-item @click="navigateTo('/home')">首页</el-breadcrumb-item>
+            <el-breadcrumb-item 
+              v-for="(item, index) in breadcrumbList" 
+              :key="index"
+              :to="{ path: item.router }"
+            >
+              {{ item.label }}
+            </el-breadcrumb-item>
+          </el-breadcrumb>
+        </div>
         <router-view></router-view>
       </el-col>
     </el-row>
@@ -42,52 +79,68 @@ export default {
   name: 'App',
   data() {
     return {
-      selectedItem:null,
-      curTrue:false,
+      collapsed: false,
       data: [{
         label: '首页',
+        icon: 'el-icon-s-home',
+        expanded: true,
         children:[{
           label:'导航栏',
+          icon: 'el-icon-menu',
           router:'/home'
         }]
       }, {
         label: 'Echarts绘图',
+        icon: 'el-icon-data-line',
+        expanded: false,
         children: [{
           label: '3DEcharts',
+          icon: 'el-icon-data-analysis',
           router:'/echartsform'
         }, {
           label: 'DataV',
+          icon: 'el-icon-pie-chart',
           router:'/dataVone'
         }]
       }, {
         label: '播放器',
+        icon: 'el-icon-video-play',
+        expanded: false,
         children: [{
           label: '音乐播放器',
+          icon: 'el-icon-headset',
           router:'/AudioVisual'
         }]
       },{
-        label:'hover样式',
+        label:'交互功能',
+        icon: 'el-icon-s-operation',
+        expanded: false,
         children:[{
           label:'悬停功能',
+          icon: 'el-icon-position',
           router:'/FirstHover'
         },{
           label:'悬停图片',
+          icon: 'el-icon-picture',
           router:'/SecondHover'
+        },{
+          label:'点击事件',
+          icon: 'el-icon-s-flag',
+          router:'/ClickFirst'
+        },{
+          label:'前端风云',
+          icon: 'el-icon-s-marketing',
+          router:'/WebStorm'
         }]
       },{
-        label:'其他事件',
-        children:[
-            {
-            label:'点击事件',
-            router:'/ClickFirst'
-          },{
-            label:'前端风云',
-            router:'/WebStorm'
-          },{
-            label:'导出图片/发送邮件',
-            router:'/ProductionReport'
-          }
-        ]
+        label:'报告管理',
+        icon: 'el-icon-document',
+        expanded: false,
+        children:[{
+          label:'导出图片/发送邮件',
+          icon: 'el-icon-download',
+          router:'/ProductionReport'
+        }]
       }
     ],
       defaultProps: {
@@ -96,49 +149,75 @@ export default {
       }
     }
   },
+  computed: {
+    breadcrumbList() {
+      const currentPath = this.$route.path
+      const breadcrumb = []
+      
+      // 遍历菜单数据，找到当前路径对应的菜单项
+      this.data.forEach(menu => {
+        if (menu.children) {
+          menu.children.forEach(subMenu => {
+            if (subMenu.router === currentPath) {
+              // 添加父菜单
+              breadcrumb.push({
+                label: menu.label,
+                router: '#' // 父菜单没有路由，点击时展开/收起
+              })
+              // 添加子菜单
+              breadcrumb.push({
+                label: subMenu.label,
+                router: subMenu.router
+              })
+            }
+          })
+        }
+      })
+      
+      return breadcrumb
+    }
+  },
   methods: {
+    toggleCollapse() {
+      this.collapsed = !this.collapsed
+    },
+    toggleMenu(index) {
+      this.data[index].expanded = !this.data[index].expanded
+    },
     handleNodeClick(data) {
       if(!data.children){
-        // this.data.forEach(e=>{
-        //   e.active=false
-        //   if(e.label==data.label){
-        //     e.active=true
-        //   }
-        //   if(e?.children&&e.children.length>0){
-        //     console.log(888,e?.children)
-        //         e?.children.forEach(ee=>{
-        //           ee.active=false
-        //           if(ee.label==data.label){
-        //             ee.active=true
-        //           }
-        //         })
-        //   }
-          
-        // })
-      console.log(2222,this.data)
-        // data['active']=true
+        // 重置所有菜单项的激活状态
+        this.resetMenuActiveState()
         
-        var data1=this.updateItemRecurs(this.data,data.label)
-        this.data=data1
+        // 设置当前菜单项为激活状态
+        this.setMenuActive(data.label)
+        
+        // 导航到对应路由
         this.$router.push(data.router)
       }
     },
-    updateItemRecurs(array,label){
-      console.log(5,array,label)
-      return array.map(item=>{
-        item.active=false
-        if(item.label==label){
-          return {...item,active:true}
+    resetMenuActiveState() {
+      this.data.forEach(item => {
+        if (item.children) {
+          item.children.forEach(child => {
+            child.active = false
+          })
         }
-        if(item?.children&&item.children.length){
-          return {
-            ...item,
-            children:this.updateItemRecurs(item.children,label)
-          }
-        }
-        return item
-
       })
+    },
+    setMenuActive(label) {
+      this.data.forEach(item => {
+        if (item.children) {
+          item.children.forEach(child => {
+            if (child.label === label) {
+              child.active = true
+            }
+          })
+        }
+      })
+    },
+    navigateTo(router) {
+      this.$router.push(router)
     }
   }
 }
@@ -232,63 +311,155 @@ body {
 
 /* 左侧边栏样式 */
 .borderrightcolor {
-  background: white;
-  border-right: 1px solid #e4e7ed;
-  height: calc(100vh - 60px);
-  overflow-y: auto;
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
+    background: white;
+    border-right: 1px solid #e4e7ed;
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.sidebar-header {
+    padding: 10px;
+    border-bottom: 1px solid #e4e7ed;
+    text-align: center;
+}
+
+.collapse-btn {
+    font-size: 16px;
+    color: #606266;
+    transition: all 0.3s ease;
+}
+
+.collapse-btn:hover {
+    color: #409eff;
 }
 
 .app_left {
-  padding: 20px 0;
+    padding: 10px 0;
 }
 
 .app_left ul {
-  list-style: none;
-  padding: 0;
+    list-style: none;
+    padding: 0;
 }
 
-.app_left .cursor {
-  display: block;
-  padding: 12px 20px;
-  font-weight: 600;
-  color: #303133;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border-left: 3px solid transparent;
+.menu-item {
+    margin-bottom: 5px;
 }
 
-.app_left .cursor:hover {
-  background: #ecf5ff;
-  color: #409eff;
-  border-left-color: #409eff;
-  transform: translateX(5px);
+.menu-header {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    font-weight: 600;
+    color: #303133;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+    position: relative;
 }
 
-.app_left li {
-  list-style: none;
+.menu-header:hover {
+    background: #ecf5ff;
+    color: #409eff;
+    border-left-color: #409eff;
 }
 
-.app_left li .cursor {
-  padding-left: 40px;
-  font-weight: normal;
-  color: #606266;
+.menu-header i {
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.menu-arrow {
+    position: absolute;
+    right: 15px;
+    transition: transform 0.3s ease;
+    font-size: 12px;
+}
+
+.sub-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.sub-menu-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px 10px 40px;
+    font-weight: normal;
+    color: #606266;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+}
+
+.sub-menu-item:hover {
+    background: #f5f7fa;
+    color: #409eff;
+    border-left-color: #409eff;
+    transform: translateX(5px);
+}
+
+.sub-menu-item i {
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.fontRed {
+    color: #409eff;
+    font-weight: 500;
+    background: #ecf5ff;
+    border-left-color: #409eff;
+}
+
+/* 折叠状态样式 */
+.borderrightcolor.collapsed .menu-header span,
+.borderrightcolor.collapsed .sub-menu-item span {
+    display: none;
+}
+
+.borderrightcolor.collapsed .menu-header i,
+.borderrightcolor.collapsed .sub-menu-item i {
+    margin-right: 0;
+}
+
+.borderrightcolor.collapsed .sub-menu-item {
+    padding-left: 20px;
+    justify-content: center;
+}
+
+/* 面包屑样式 */
+.breadcrumb-container {
+  background: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.el-breadcrumb {
   font-size: 14px;
 }
 
-.app_left li .cursor:hover {
-  background: #f5f7fa;
-  color: #409eff;
-  border-left-color: #409eff;
+.el-breadcrumb__item:last-child .el-breadcrumb__inner {
+  color: #606266;
+  font-weight: normal;
 }
 
-.app_left li .fontRed {
+.el-breadcrumb__item:not(:last-child) .el-breadcrumb__inner {
   color: #409eff;
-  font-weight: 500;
-  background: #ecf5ff;
-  border-left-color: #409eff;
+}
+
+.el-breadcrumb__item:not(:last-child) .el-breadcrumb__inner:hover {
+  color: #66b1ff;
+  text-decoration: underline;
 }
 
 /* 主内容区域 */
