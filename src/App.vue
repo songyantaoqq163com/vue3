@@ -224,6 +224,12 @@ export default {
 </script>
 
 <style>
+.demo-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
 *{
   margin:0;
   padding:0;
@@ -442,6 +448,8 @@ body {
   border-radius: 8px;
   margin-bottom: 15px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  position: fixed;
+  top: 13px;
 }
 
 .el-breadcrumb {
