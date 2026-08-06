@@ -34,6 +34,10 @@
           <div class="block">
             <i class="hovicon effect-2 effect-9">8</i>
           </div>
+
+          <div class="block4 ">
+            <span style="position:relative;color: #ffffff;">旋转背景</span>
+          </div>
     </div>
     
     <div style="display:flex;justify-content: flex-start;">
@@ -295,6 +299,27 @@ export default {
     transform: scale(1.5);
     opacity: 0;
   }
+}
+
+.block4 {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  text-align: center;
+}
+.block4::before {
+  content: "";
+  position: absolute;
+  inset: -10%; 
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #00d4ff 100%);
+  animation: rotateGradient 6s linear infinite;
+}
+
+@keyframes rotateGradient {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .hovicon.effect-2{
